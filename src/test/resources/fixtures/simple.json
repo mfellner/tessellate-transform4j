@@ -1,0 +1,12 @@
+{
+  "class": "div",
+  "id": "test",
+  "ignore": 42,
+  "children": [
+    {
+      "class": "h1",
+      "id": "heading",
+      "contents": ["Hello, world!"]
+    }
+  ]
+}

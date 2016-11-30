@@ -1,0 +1,23 @@
+{
+  "type": "test.Wrapper",
+  "props": null,
+  "children": [
+    {
+      "type": "div",
+      "props": {
+        "id": "test"
+      },
+      "children": [
+        {
+          "type": "test.Heading",
+          "props": {
+            "id": "heading"
+          },
+          "children": [
+            "Hello, world!"
+          ]
+        }
+      ]
+    }
+  ]
+}
