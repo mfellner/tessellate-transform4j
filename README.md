@@ -1,11 +1,13 @@
 # tessellate-transform4j
 
 [tessellate-transform](https://github.com/zalando-incubator/tessellate/tree/master/packages/tessellate-transform) for Java.
+&nbsp;
+[![Build Status](https://travis-ci.org/zalando-incubator/tessellate-transform4j.svg?branch=master)](https://travis-ci.org/zalando-incubator/tessellate-transform4j)
 
 ### Usage
 
 ```java
-import de.zalando.tessellate.transform4j.Tessellate;
+import org.zalando.tessellate.transform4j.Tessellate;
 
 String json = "{ ... }";
 

@@ -1,4 +1,4 @@
-package de.zalando.tessellate.transform4j;
+package org.zalando.tessellate.transform4j;
 
 /**
  * Tessellate transform file argument.
