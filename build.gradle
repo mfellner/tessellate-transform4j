@@ -1,5 +1,6 @@
 buildscript {
   repositories {
+    jcenter()
     maven {
       url "https://plugins.gradle.org/m2/"
     }
@@ -8,18 +9,21 @@ buildscript {
   dependencies {
     classpath 'org.ajoberstar:gradle-git:1.6.0'
     classpath "com.moowork.gradle:gradle-node-plugin:0.14"
+    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
   }
 }
 
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'com.moowork.node'
 apply plugin: 'org.ajoberstar.grgit'
 apply plugin: 'org.ajoberstar.github-pages'
 apply plugin: 'org.ajoberstar.release-base'
 apply plugin: 'org.ajoberstar.release-opinion'
+apply plugin: 'com.jfrog.bintray'
 
-group 'de.zalando.tessellate'
+group 'org.zalando.tessellate'
 version '0.1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -54,6 +58,32 @@ task sourcesJar(type: Jar) {
 
 artifacts {
   archives javadocJar, sourcesJar
+}
+
+publishing {
+  publications {
+    BintrayMavenPublication(MavenPublication) {
+      from components.java
+      groupId project.group
+      artifactId project.name
+      version project.version
+    }
+  }
+}
+
+bintray {
+  user = System.getenv('BINTRAY_USER')
+  key = System.getenv('BINTRAY_KEY')
+  publications = ['BintrayMavenPublication']
+  pkg {
+    repo = 'maven'
+    name = 'tessellate-transform4j'
+    desc = 'Tessellate transform for Java'
+    userOrg = 'zalando'
+    licenses = ['MIT']
+    labels = ['mosaic', 'tessellate']
+    vcsUrl = 'https://github.com/zalando-incubator/tessellate-transform4j.git'
+  }
 }
 
 compileJava.dependsOn(yarn_install)
