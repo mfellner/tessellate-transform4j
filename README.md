@@ -3,6 +3,7 @@
 [tessellate-transform](https://github.com/zalando-incubator/tessellate/tree/master/packages/tessellate-transform) for Java.
 &nbsp;
 [![Build Status](https://travis-ci.org/zalando-incubator/tessellate-transform4j.svg?branch=master)](https://travis-ci.org/zalando-incubator/tessellate-transform4j)
+[ ![Download](https://api.bintray.com/packages/zalando/maven/tessellate-transform4j/images/download.svg) ](https://bintray.com/zalando/maven/tessellate-transform4j/_latestVersion)
 
 ### Usage
 
