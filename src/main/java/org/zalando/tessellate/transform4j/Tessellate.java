@@ -4,7 +4,10 @@ package org.zalando.tessellate.transform4j;
  * Main tessellate-transform4j class.
  */
 public class Tessellate {
-  private static final String SCRIPT_FILE = "index.js";
+  private static final String[] SCRIPTS = {
+      "tessellate.js", // tessellate-transform library
+      "index.js"       // tessellate-transform4j JavaScript API
+  };
   private static final String JS_FUNCTION = "transform";
   private static final String FILE_EXTENSION = ".json";
 
@@ -38,7 +41,7 @@ public class Tessellate {
   public static String transform(String json, Options options, int space) throws TransformException {
     try {
       File file = new File(json, FILE_EXTENSION);
-      return (String) Nashorn.executeFunction(SCRIPT_FILE, JS_FUNCTION, file, options, space);
+      return (String) Nashorn.executeFunction(SCRIPTS, JS_FUNCTION, file, options, space);
     } catch (Nashorn.NashornException e) {
       throw new TransformException(e.getMessage(), e.getCause());
     }
