@@ -1,4 +1,7 @@
-load('classpath:tessellate.js')
+/**
+ * tessellate-transform4j JavaScript API.
+ * Requires tessellate-transform as 'Tessellate' in the global context.
+ */
 
 function toNativeArray(items) {
   var array = []

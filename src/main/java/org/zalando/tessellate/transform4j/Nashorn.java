@@ -15,17 +15,20 @@ class Nashorn {
   }
 
   static Object executeFunction(String filePath, String functionName, Object... args) throws NashornException {
+    return executeFunction(new String[]{filePath}, functionName, args);
+  }
+
+  static Object executeFunction(String[] filePaths, String functionName, Object... args) throws NashornException {
     ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
 
     if (engine == null) {
       throw new RuntimeException("Nashorn engine not available.");
     }
 
-    ClassLoader loader = Thread.currentThread().getContextClassLoader();
-    Reader reader = new InputStreamReader(loader.getResourceAsStream(filePath));
-
     try {
-      engine.eval(reader);
+      for (String filePath : filePaths) {
+        eval(engine, filePath);
+      }
     } catch (ScriptException e) {
       throw new NashornException(e.getMessage(), e);
     }
@@ -39,5 +42,11 @@ class Nashorn {
     } catch (NoSuchMethodException e) {
       throw new NashornException("No such function: " + functionName, e);
     }
+  }
+
+  private static void eval(ScriptEngine engine, String filePath) throws ScriptException {
+    ClassLoader loader = Thread.currentThread().getContextClassLoader();
+    Reader reader = new InputStreamReader(loader.getResourceAsStream(filePath));
+    engine.eval(reader);
   }
 }
